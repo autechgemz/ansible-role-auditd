@@ -1,0 +1,6 @@
+# Managed by ansible
+{% if auditd_rules_merged is defined and auditd_rules_merged %}
+{% for lines in auditd_rules_merged %}
+{{ lines }}
+{% endfor %}
+{% endif %}

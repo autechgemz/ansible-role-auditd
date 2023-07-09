@@ -1,0 +1,14 @@
+---
+
+- name: Service tasks
+  when: not ansible_check_mode
+  tags:
+    - auditd_service
+    - auditd
+  become: true
+  block:
+    - name: Manage auditd service
+      ansible.builtin.service:
+        name: "{{ auditd_service_name }}"
+        state: "{{ auditd_service_ensure }}"
+        enabled: "{{ auditd_service_enable }}"

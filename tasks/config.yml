@@ -1,0 +1,48 @@
+---
+
+- name: Configration tasks
+  tags:
+    - auditd_config
+    - auditd
+  become: true
+  block:
+    - name: Merge daemon configration
+      ansible.builtin.set_fact:
+        auditd_daemon_config_merged: "{{ auditd_daemon_config_default | ansible.builtin.combine(auditd_daemon_config_options, recursive=True) }}"
+    - name: Merge configration
+      ansible.builtin.set_fact:
+        auditd_config_merged: "{{ auditd_config_default | ansible.builtin.combine(auditd_config_options, recursive=True) }}"
+    - name: Merge rule configration
+      ansible.builtin.set_fact:
+        auditd_rules_merged: "{{ auditd_rules_default + auditd_rules_options | list | flatten | unique }}"
+
+    - name: Debug variables
+      ansible.builtin.include_tasks: debug/config.yml
+      when: auditd_debug is defined and auditd_debug
+
+    - name: Manage auditd daemon config
+      ansible.builtin.template:
+        src: auditd.j2
+        dest: "{{ auditd_daemon_config_file }}"
+        owner: root
+        group: root
+        mode: 0644
+      notify: Restart auditd
+
+    - name: Manage auditd configuration
+      ansible.builtin.template:
+        src: auditd.conf.j2
+        dest: "{{ auditd_config_file }}"
+        owner: root
+        group: root
+        mode: 0640
+      notify: Restart auditd
+
+    - name: Manage auditd rule configuration
+      ansible.builtin.template:
+        src: auditd.rule.j2
+        dest: "{{ auditd_rules_file }}"
+        owner: root
+        group: root
+        mode: 0640
+      notify: Restart auditd

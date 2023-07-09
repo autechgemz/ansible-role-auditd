@@ -1,0 +1,15 @@
+---
+
+auditd_debug: false
+
+auditd_package_ensure: 'present'
+
+auditd_service_ensure: 'started'
+
+auditd_service_enable: true
+
+auditd_daemon_config_options: {}
+
+auditd_config_options: {}
+
+auditd_rules_options: {}

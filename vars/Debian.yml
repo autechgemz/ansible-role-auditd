@@ -1,0 +1,12 @@
+---
+
+auditd_package_name:
+  - 'auditd'
+
+auditd_service_name: 'auditd'
+
+auditd_daemon_config_file: '/etc/default/auditd'
+
+auditd_config_file: '/etc/audit/auditd.conf'
+
+auditd_rules_file: '/etc/audit/rules.d/audit.rules'

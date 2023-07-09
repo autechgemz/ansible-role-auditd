@@ -1,0 +1,16 @@
+galaxy_info:
+  role_name: auditd
+  namespace: autechgemz
+  author: "autechgemz@gmail.com"
+  description: "Manage Security Auditing Service."
+  license: MIT
+  min_ansible_version: "1.2"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  galaxy_tags:
+    - security
+    - audit
+dependencies: []

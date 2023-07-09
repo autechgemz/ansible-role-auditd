@@ -1,0 +1,36 @@
+---
+- name: Debug variables
+  when: auditd_debug is defined and auditd_debug
+  block:
+    # deamon configration
+    - name: Print auditd_daemon_config_default
+      ansible.builtin.debug:
+        var: auditd_daemon_config_default
+    - name: Print auditd_daemon_config_options
+      ansible.builtin.debug:
+        var: auditd_daemon_config_options
+    - name: Print auditd_daemon_config_merged
+      ansible.builtin.debug:
+        var: auditd_daemon_config_merged
+
+    # auditd configration
+    - name: Print auditd_config_default
+      ansible.builtin.debug:
+        var: auditd_config_default
+    - name: Print auditd_config_options
+      ansible.builtin.debug:
+        var: auditd_config_options
+    - name: Print auditd_config_merged
+      ansible.builtin.debug:
+        var: auditd_config_merged
+
+    # rule configration
+    - name: Print auditd_rules_default
+      ansible.builtin.debug:
+        var: auditd_rules_default
+    - name: Print auditd_rules_options
+      ansible.builtin.debug:
+        var: auditd_rules_options
+    - name: Print auditd_rules_merged
+      ansible.builtin.debug:
+        var: auditd_rules_merged

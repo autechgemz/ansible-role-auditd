@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+{% if auditd_config_merged is defined and auditd_config_merged %}
+{% for key, value in auditd_config_merged.items() %}
+{{ key }} = {{ value }}
+{% endfor %}
+{% endif %}
